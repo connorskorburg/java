@@ -1,4 +1,6 @@
-
+import animals.Mammal;
+import animals.Gorilla;
+import animals.Bat;
 public class MammalTest {
 	public static void main(String args[]) {
 		Mammal animal = new Mammal();
@@ -10,5 +12,11 @@ public class MammalTest {
 		System.out.println(test.eatBananas());
 		System.out.println(test.eatBananas());
 		System.out.println(test.climb());
+		Bat testBat = new Bat();
+		System.out.println(testBat.displayEnergy());
+		System.out.println(testBat.fly());
+		System.out.println(testBat.eatHumans());
+		System.out.println(testBat.eatHumans());
+		System.out.println(testBat.attackTown());
 	}
 }
