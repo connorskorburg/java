@@ -18,5 +18,6 @@ public class MammalTest {
 		System.out.println(testBat.eatHumans());
 		System.out.println(testBat.eatHumans());
 		System.out.println(testBat.attackTown());
+		System.out.println(testBat.eatHumans());
 	}
 }
