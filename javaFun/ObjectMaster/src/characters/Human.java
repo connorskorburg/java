@@ -1,42 +1,38 @@
 package characters;
 
 public class Human {
-	private int strength = 3;
-	private int intelligence = 3;
-	private int stealth = 3;
-	private int health = 100;
+	protected int strength = 3;
+	protected int intelligence = 3;
+	protected int stealth = 3;
+	protected int health = 100;
 	//constructor
-	public void human(int health, int strength, int intelligence, int stealth) {
-		this.health = health;
-		this.strength = strength;
-		this.intelligence = intelligence;
-		this.stealth = stealth;
+	public Human() {
 	}
 	//setting methods
-	public void setHealth(int heal) {
-		this.health = heal;
+	public void setHealth(int health) {
+		this.health = health;
 	}
-	public void setStrength(int stren) {
-		this.strength = stren;
+	public void setStrength(int strength) {
+		this.strength = strength;
 	}
-	public void setIntelligence(int i) {
-		this.intelligence = i;
+	public void setIntelligence(int intelligence) {
+		this.intelligence = intelligence;
 	}
-	public void setStealth(int s) {
-		this.stealth = s;
+	public void setStealth(int stealth) {
+		this.stealth = stealth;
 	}
 	//getting methods
 	public int getHealth() {
 		return this.health;
 	}
 	public int getStrength() {
-		return this.strength;
+		return strength;
 	}
 	public int getIntelligence() {
-		return this.intelligence;
+		return intelligence;
 	}
 	public int getStealth() {
-		return this.stealth;
+		return stealth;
 	}
 	//attack method
 	public void attack(Human human) {
