@@ -30,6 +30,15 @@ public class Home extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		Integer count = (Integer) session.getAttribute("count");
+		if(count == null) {
+			session.setAttribute("count", 0);
+		}
+		else {
+			count += 1;
+			session.setAttribute("count", count);
+		}
+		System.out.println(count);
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/home.jsp");
 		view.forward(request, response);
 	}
