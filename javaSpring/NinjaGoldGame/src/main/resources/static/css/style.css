@@ -1,0 +1,10 @@
+.wrapper{
+	width: 25%;
+	display: inline-block;
+}
+.activities{
+	border: 1px solid gray;
+	width: 95%;
+	margin-left: 2.5%;
+	margin-right: 2.5%;
+}
