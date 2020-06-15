@@ -2,9 +2,11 @@
 	width: 25%;
 	display: inline-block;
 }
-.activities{
+div.activities{
 	border: 1px solid gray;
 	width: 95%;
+	height: 30vh; 
 	margin-left: 2.5%;
 	margin-right: 2.5%;
+	overflow-y: scroll; 
 }
