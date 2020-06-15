@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, java.util.Collections"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -44,16 +44,15 @@
 	</div>
 	<h2 class="p-3 ml-4">Activities: </h2>
 	<div class="activities p-2">
-		<c:forEach items="${goldDisplay}" var="display">
-			<c:choose>
-				<c:when test = "${display.indexOf('-') != -1}">
-					<p class="text-danger"><c:out value="${display}" /></p>
-				</c:when>
-				<c:otherwise>
-					<p class="text-success"><c:out value="${display}" /></p>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
+		<% ArrayList<String> goldDisplay = (ArrayList<String>) session.getAttribute("goldDisplay"); %>
+		<% for(int i = goldDisplay.size() - 1; i >= 0; i--){ %>
+			<% if(goldDisplay.get(i).indexOf("-") != -1){ %>
+				<p class="text-danger"><%= goldDisplay.get(i) %></p>
+			<% } %>
+			<% if(goldDisplay.get(i).indexOf("-") == -1) { %>
+				<p class="text-success"><%= goldDisplay.get(i) %></p>
+			<% } %>
+		<% } %>
 	</div>
 </body>
 </html>
