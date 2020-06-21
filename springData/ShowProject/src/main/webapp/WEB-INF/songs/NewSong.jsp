@@ -5,18 +5,14 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Add a Song</title>
+	<title>Your New Song</title>
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
-	<div class="container p-5 w-50">
-		<form action="/createSong" method=POST>
-			<h3>Create New Song</h3>
-			<input type="text" class="form-control mb-3" placeholder="Title" name="title">
-			<input type="text" class="form-control mb-3" placeholder="Artist" name="artist">
-			<input type="number" class="form-control mb-3" placeholder="Year" name="year">
-			<button type="submit" class="btn btn-dark">Submit</button>
-		</form>
+	<div class="container p-5">
+		<h3>Title: <c:out value="${newTitle}"/></h3>
+		<h3>Artist: <c:out value="${newArtist}"/></h3>
+		<h3>Year: <c:out value="${newYear}"/></h3>
 	</div>
 </body>
 </html>
