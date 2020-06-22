@@ -33,7 +33,7 @@ public class SongService {
 			return null;
 		}
 	}
-	public Song updateBook(Song b) {
+	public Song updateSong(Song b) {
 		return songRepository.save(b);
 	}
 	//updates a song
