@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.connorskorburg.showproject.models.Song;
 import com.connorskorburg.showproject.repositories.SongRepository;
 
+
 @Service
 public class SongService {
 	private final SongRepository songRepository;
@@ -31,6 +32,9 @@ public class SongService {
 		} else {
 			return null;
 		}
+	}
+	public Song updateBook(Song b) {
+		return songRepository.save(b);
 	}
 	//updates a song
 	public Song updateSong(Long id, String title, String artist, Integer year) {
