@@ -54,4 +54,29 @@ public class LicenseService {
 	public void deleteLicense(Long id) {
 		licenseRepository.deleteById(id);
 	}
+	public static int licenseNumber;
+
+	public static int getLicenseNumber() {
+		return licenseNumber;
+	}
+
+	public static void setLicenseNumber(int licenseNumber) {
+		LicenseService.licenseNumber = licenseNumber;
+	}
+
+	public String stringLicenseNumber(int num) {
+		String format = String.format("%06d", num);
+		return format;
+	}
+	public String createLicenseNumber() {
+		if(licenseRepository.findTopByOrderByNumberDesc().isEmpty()) {
+			licenseNumber +=1;
+			return stringLicenseNumber(licenseNumber);
+		}
+		else {
+			List<License> num = licenseRepository.findTopByOrderByNumberDesc() ;
+			licenseNumber = 1+(Integer.parseInt(num.get(0).getNumber()));
+			return stringLicenseNumber(licenseNumber);
+		}
+	}
 }

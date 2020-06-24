@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -31,10 +33,32 @@ public class Person {
 	@OneToOne(mappedBy="person", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private License license;
 	
+	@PrePersist
+	protected void onCreate() {
+		this.createdAt = new Date();
+	}
+	@PreUpdate
+	protected void onUpdate() {
+		this.updatedAt = new Date();
+	}
+	
 	public Person() {
 		
 	}
-
+	
+	
+	
+    public Person(Long id, String firstName, String lastName) {
+    	this.id = id;
+    	this.firstName = firstName;
+    	this.lastName = lastName;
+    }
+    
+    public Person(String firstName, String lastName) {
+    	this.firstName = firstName;
+    	this.lastName = lastName;
+    }
+    
 	public Long getId() {
 		return id;
 	}

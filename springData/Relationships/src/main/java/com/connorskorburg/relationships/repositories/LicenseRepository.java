@@ -11,4 +11,5 @@ public interface LicenseRepository extends CrudRepository<License, Long>{
 	List<License> findAll();
 	//deletes a license
 	void deleteById(Long id);
+	List<License> findTopByOrderByNumberDesc();
 }

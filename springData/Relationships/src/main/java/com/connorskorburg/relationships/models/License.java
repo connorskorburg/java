@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -32,8 +34,30 @@ public class License {
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="person_id")
 	private Person person;
+	
+	@PrePersist
+	protected void onCreate() {
+		this.createdAt = new Date();
+	}
+	@PreUpdate
+	protected void onUpdate() {
+		this.updatedAt = new Date();
+	}
 	public License() {
 		
+	}
+    public License(Long id, String number, Date expirationDate, String state, Person person) {
+		this.id = id;
+		this.number = number;
+		this.expirationDate = expirationDate;
+		this.state = state;
+		this.person = person;
+	}
+    public License(String number, Date expirationDate, String state, Person person) {
+		this.number = number;
+		this.expirationDate = expirationDate;
+		this.state = state;
+		this.person = person;
 	}
 	public Long getId() {
 		return id;
