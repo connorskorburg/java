@@ -14,15 +14,21 @@
 		<h2><c:out value="${category.name}"/></h2>
 		<div class="left">
 			<h5>Products</h5>
+			<ul>
+				<c:forEach items="${cat_products }" var="c_prod">
+					<li><c:out value="${c_prod.name }" /></li>
+				</c:forEach>
+			</ul>
 		</div>
 		<div class="right">
 			<h5>Add Product: </h5>
-			<form action="/addProduct" method=POST>
+			<form action="/addProductToCategory" method=POST>
 				<select name="product_id" class="form-control mb-3">
 					<c:forEach items="${products}" var="prod">
 						<option value="<c:out value="${prod.id}"/>" class="form-control mb-3"><c:out value="${prod.name}"/></option>
 					</c:forEach>
 				</select>
+				<input type="hidden" name="category_id" value="<c:out value="${category.id}"/>">
 				<button type="submit" class="btn btn-primary mb-3">Add</button>
 			</form>
 		</div>

@@ -1,7 +1,5 @@
 package com.connorskorburg.productscategories.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.connorskorburg.productscategories.models.Category;
+import com.connorskorburg.productscategories.models.CategoryProduct;
 import com.connorskorburg.productscategories.models.Product;
+import com.connorskorburg.productscategories.services.CategoryProductService;
 import com.connorskorburg.productscategories.services.CategoryService;
 import com.connorskorburg.productscategories.services.ProductService;
 
@@ -24,6 +24,9 @@ public class CategoryController {
 	}
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private CategoryProductService categoryProductService;
 	
 	@RequestMapping("/categories/new")
 	public String newCategory() {
@@ -38,9 +41,17 @@ public class CategoryController {
 	@RequestMapping("/categories/{id}")
 	public String showCategory(@PathVariable(value="id") Long id, Model model) {
 		Category category = categoryService.findCategory(id);
-		List<Product> products = productService.allProducts();
 		model.addAttribute("category", category);
-		model.addAttribute("products", products);
+		model.addAttribute("products", productService.allowedProducts(category));
+		model.addAttribute("cat_products", category.getProducts());
 		return "WEB-INF/ShowCategory.jsp";
+	}
+	@RequestMapping(value="/addProductToCategory", method=RequestMethod.POST)
+	public String addProductToCategory(@RequestParam(value="product_id") Long product_id, @RequestParam(value="category_id") Long category_id) {
+		Category category = categoryService.findCategory(category_id);
+		Product product = productService.findProduct(product_id);
+		CategoryProduct categoryProduct = new CategoryProduct(product, category);
+		categoryProductService.saveCatProd(categoryProduct);
+		return "redirect:/categories/" + category_id;
 	}
 }

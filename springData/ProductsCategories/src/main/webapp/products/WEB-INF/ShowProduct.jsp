@@ -14,6 +14,11 @@
 		<h2><c:out value="${product.name}"/></h2>
 		<div class="left">
 			<h5>Categories</h5>
+			<ul>
+			<c:forEach items="${prod_categories}" var="p_cat">
+				<li><c:out value="${p_cat.name }"/></li>
+			</c:forEach>
+			</ul>
 		</div>
 		<div class="right">
 			<h5>Add Category: </h5>

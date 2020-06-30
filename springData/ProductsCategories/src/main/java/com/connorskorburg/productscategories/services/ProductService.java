@@ -20,6 +20,10 @@ public class ProductService {
 	public List<Product> allProducts(){
 		return productRepository.findAll();
 	}
+	//saves a product
+	public void saveProduct(Product product) {
+		productRepository.save(product);
+	}
 	//creates a product
 	public Product createProduct(Product b) {
 		return productRepository.save(b);
