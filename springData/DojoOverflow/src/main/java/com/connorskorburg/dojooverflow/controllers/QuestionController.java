@@ -5,8 +5,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class QuestionController {
+	
 	@RequestMapping("/questions/new")
-	public String NewQuestion() {
-		return "questions/WEB-INF/NewQuestion.jsp";
+	public String newQuestion() {
+		return "WEB-INF/NewQuestion.jsp";
+	}
+	
+	@RequestMapping("/questions")
+	public String questionsDash() {
+		return "questions/WEB-INF/Questions.jsp";
 	}
 }
