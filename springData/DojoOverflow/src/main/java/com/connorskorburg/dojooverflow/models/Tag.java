@@ -1,6 +1,7 @@
 package com.connorskorburg.dojooverflow.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -17,13 +19,13 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="answers")
-public class Answer {
+@Table(name="tags")
+public class Tag {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String answer;
+	private String subject;
 	
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -40,25 +42,26 @@ public class Answer {
 	protected void onUpdate() {
 		this.updatedAt = new Date();
 	}
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="question_id")
-	private Question question;
 	
-	public Answer() {
-		
-	}
-	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+		name = "tags_questions",
+		joinColumns = @JoinColumn(name = "tag_id"),
+		inverseJoinColumns = @JoinColumn(name = "question_id")
+	)
+	private List<Question> questions;
+
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getAnswer() {
-		return answer;
+	public String getSubject() {
+		return subject;
 	}
-	public void setAnswer(String answer) {
-		this.answer = answer;
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
@@ -72,11 +75,13 @@ public class Answer {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	public Question getQuestion() {
-		return question;
+	public List<Question> getQuestions() {
+		return questions;
 	}
-	public void setQuestion(Question question) {
-		this.question = question;
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
 	}
+	
+	
 	
 }
