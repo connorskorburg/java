@@ -27,6 +27,10 @@ public class TagService {
 		return tagRepo.save(b);
 	}
 	
+	public Tag createTag(String subject) {
+		return tagRepo.save(new Tag(subject));
+	}
+	
 	//returns a tag
 	public Tag findTag(Long id) {
 		Optional<Tag> optionalTag = tagRepo.findById(id);

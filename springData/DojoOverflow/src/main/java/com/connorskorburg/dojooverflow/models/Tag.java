@@ -50,7 +50,14 @@ public class Tag {
 		inverseJoinColumns = @JoinColumn(name = "question_id")
 	)
 	private List<Question> questions;
-
+	
+	public Tag() {
+		
+	}
+	
+	public Tag(String subject) {
+		this.subject = subject;
+	}
 	public Long getId() {
 		return id;
 	}
