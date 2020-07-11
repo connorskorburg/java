@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.connorskorburg.dojooverflow.models.Question;
 import com.connorskorburg.dojooverflow.models.Tag;
+import com.connorskorburg.dojooverflow.services.AnswerService;
 import com.connorskorburg.dojooverflow.services.QuestionService;
 import com.connorskorburg.dojooverflow.services.TagService;
 
@@ -18,11 +18,13 @@ import com.connorskorburg.dojooverflow.services.TagService;
 public class QuestionController {
 	
 	private QuestionService questionService;
+	private AnswerService answerService;
 	private TagService tagService;
 	
-	public QuestionController(QuestionService questionService) {
+	public QuestionController(QuestionService questionService, TagService tagService, AnswerService answerService) {
 		this.questionService = questionService;
 		this.tagService = tagService;
+		this.answerService = answerService;
 	}
 	
 	@RequestMapping("/questions/new")
