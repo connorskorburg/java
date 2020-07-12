@@ -47,21 +47,46 @@ public class QuestionController {
 		questionService.createQuestion(newQuestion);
 
 		List<String> newTags = (List<String>)Arrays.asList(tags.trim().split("\\s*,\\s*"));
-		System.out.println(newTags);
-		ArrayList<Tag> addedTags = new ArrayList<Tag>();
+		
+		ArrayList<Tag> allTags = (ArrayList)tagService.allTags();
+
+		System.out.println(allTags.size());
+		System.out.println(newTags.size());
+		
+//		for(int i = 0; i < allTags.size(); i++) {
+//			for(int x = 0; x < newTags.size(); i++) {
+//				String tag = newTags.get(i);
+//				if(tag == allTags.get(i).getSubject()) {
+//					System.out.println("Match");
+//					System.out.println("New Tag: " + tag);
+//					System.out.println("All Tags: " + allTags.get(i).getSubject());
+//				}
+//			}
+//		}
+		
 		for(int i = 0; i < newTags.size(); i++) {
-			addedTags.add(tagService.createTag(newTags.get(i)));
-			System.out.println("show: " + newTags.get(i));
+			for(Tag t : allTags) {
+				if(newTags.get(i).contentEquals(t.getSubject())) {
+					System.out.println("MATCH");
+					System.out.println("T: " + t.getSubject());
+					System.out.println("New Tag: " + newTags.get(i));
+				} 
+			}
 		}
 		
 		
-		System.out.println(addedTags);
+		ArrayList<Tag> addedTags = new ArrayList<Tag>();
+		for(int i = 0; i < newTags.size(); i++) {
+			addedTags.add(tagService.createTag(newTags.get(i)));
+		}
+		
+		
 		newQuestion.setTags(addedTags);
 		questionService.createQuestion(newQuestion);
-		System.out.println(question);
-		System.out.println(newTags);
+		System.out.println("Added Tags " + addedTags);
+		System.out.println("New Tags " + newTags);
 
-		return "questions/WEB-INF/NewQuestion.jsp";
+		return "redirect:/questions/" + newQuestion.getId();
 	}
 	
 	@RequestMapping("/questions/{id}")

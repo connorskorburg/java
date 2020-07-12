@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +13,7 @@
 		<h2 class="text-center mb-3"><c:out value="${question.question}" /></h2>
 		<h4 class="mb-3">Tags: 
 			<c:forEach items="${question.tags}" var="t">
-				<span><c:out value="${t.subject}" /></span>
+				<span class="font-weight-bold"><c:out value="${t.subject}" /> | </span>
 			</c:forEach>
 		</h4>
 		<div class="left p-2">

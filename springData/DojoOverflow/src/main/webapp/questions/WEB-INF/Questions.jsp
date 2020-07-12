@@ -18,10 +18,10 @@
 			</thead>
 			<c:forEach items="${questions}" var="q">
 			<tr>
-				<td><a href="" ><c:out value="${q.question}"/></a></td>
+				<td><a href="/questions/<c:out value="${q.id}" />" ><c:out value="${q.question}"/></a></td>
 				<td>
 					<c:forEach items="${q.tags }" var="t">
-						<span><c:out value="${t.subject}"/></span>
+						<span class="font-weight-bold"><c:out value="${t.subject}"/> | </span>
 					</c:forEach>
 				</td>
 			</tr>
