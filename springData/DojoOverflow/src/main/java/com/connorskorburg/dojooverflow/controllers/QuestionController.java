@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,7 +36,8 @@ public class QuestionController {
 	}
 	
 	@RequestMapping("/questions")
-	public String questionsDash() {
+	public String questionsDash(Model model) {
+		model.addAttribute("questions", questionService.allQuestions());
 		return "questions/WEB-INF/Questions.jsp";
 	}
 	@RequestMapping(value="/createQuestion", method=RequestMethod.POST)
@@ -59,5 +62,12 @@ public class QuestionController {
 		System.out.println(newTags);
 
 		return "questions/WEB-INF/NewQuestion.jsp";
+	}
+	
+	@RequestMapping("/questions/{id}")
+	public String showQuestion(@PathVariable(value="id") Long id, Model model) {
+		Question question = questionService.findQuestion(id);
+		model.addAttribute("question", question);
+		return "WEB-INF/ShowQuestion.jsp";
 	}
 }

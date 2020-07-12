@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +16,16 @@
 				<th>Questions</th>
 				<th>Tags</th>
 			</thead>
+			<c:forEach items="${questions}" var="q">
+			<tr>
+				<td><a href="" ><c:out value="${q.question}"/></a></td>
+				<td>
+					<c:forEach items="${q.tags }" var="t">
+						<span><c:out value="${t.subject}"/></span>
+					</c:forEach>
+				</td>
+			</tr>
+			</c:forEach>
 		</table>
 		<a href="/questions/new" role="button" class="btn btn-primary">New Question</a>
 	</div>

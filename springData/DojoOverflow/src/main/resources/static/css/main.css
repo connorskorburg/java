@@ -1,0 +1,10 @@
+.left, .right{
+	width: 50%;
+	display: inline-block;
+}
+.right{
+	vertical-align: top;
+}
+textarea{
+	resize:none;
+}
