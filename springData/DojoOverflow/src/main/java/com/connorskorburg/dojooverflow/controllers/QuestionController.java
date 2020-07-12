@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.connorskorburg.dojooverflow.models.Question;
 import com.connorskorburg.dojooverflow.models.Tag;
 import com.connorskorburg.dojooverflow.services.AnswerService;
 import com.connorskorburg.dojooverflow.services.QuestionService;
@@ -39,21 +40,21 @@ public class QuestionController {
 	@RequestMapping(value="/createQuestion", method=RequestMethod.POST)
 	public String createQuestion(@RequestParam(value="question") String question, @RequestParam(value="tags") String tags) {
 
-//		Question newQuestion = new Question(question);
-//		questionService.createQuestion(newQuestion);
+		Question newQuestion = new Question(question);
+		questionService.createQuestion(newQuestion);
 
 		List<String> newTags = (List<String>)Arrays.asList(tags.trim().split("\\s*,\\s*"));
 		System.out.println(newTags);
 		ArrayList<Tag> addedTags = new ArrayList<Tag>();
-		Tag myTag = new Tag("hello world");
 		for(int i = 0; i < newTags.size(); i++) {
-			addedTags.add(new Tag(newTags.get(i)));
-//			addedTags.add(tagService.createTag(newTags.get(i)));
+			addedTags.add(tagService.createTag(newTags.get(i)));
 			System.out.println("show: " + newTags.get(i));
 		}
+		
+		
 		System.out.println(addedTags);
-//		newQuestion.setTags(addedTags);
-//		questionService.createQuestion(newQuestion);
+		newQuestion.setTags(addedTags);
+		questionService.createQuestion(newQuestion);
 		System.out.println(question);
 		System.out.println(newTags);
 
