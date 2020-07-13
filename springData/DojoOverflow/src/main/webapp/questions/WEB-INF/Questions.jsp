@@ -14,14 +14,13 @@
 		<table class="table mb-3">
 			<thead>
 				<th>Questions</th>
-				<th>Tags</th>
 			</thead>
 			<c:forEach items="${questions}" var="q">
 			<tr>
 				<td><a href="/questions/<c:out value="${q.id}" />" ><c:out value="${q.question}"/></a></td>
 				<td>
 					<c:forEach items="${q.tags }" var="t">
-						<span class="font-weight-bold"><c:out value="${t.subject}"/> | </span>
+						<a href="/tags/<c:out value="${t.id}" />" role="button" class="btn d-inline-block btn-warning font-weight-bold"><c:out value="${t.subject}"/> </a>
 					</c:forEach>
 				</td>
 			</tr>

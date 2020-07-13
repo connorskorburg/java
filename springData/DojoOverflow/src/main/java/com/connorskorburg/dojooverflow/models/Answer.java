@@ -47,6 +47,10 @@ public class Answer {
 	public Answer() {
 		
 	}
+	public Answer(String answer, Question question) {
+		this.answer = answer;
+		this.question = question;
+	}
 	
 	public Long getId() {
 		return id;
