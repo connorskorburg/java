@@ -16,14 +16,6 @@
 				<a href="/questions/<c:out value="${q.id}" />" class="btn mt-1 d-inline-block btn-info font-weight-bold"><c:out value="${q.question}" /></a>
 			</c:forEach>
 		</h4>
-		<div class="p-2">
-			<table class="table">
-				<thead>
-					<h4>Answers</h4>
-					<h4></h4>
-				</thead>
-			</table>		
-		</div>
 		<a href="/questions" role="button" class="btn btn-warning font-weight-bold p-2 mt-2" >All Questions</a>
 	</div>	
 </body>

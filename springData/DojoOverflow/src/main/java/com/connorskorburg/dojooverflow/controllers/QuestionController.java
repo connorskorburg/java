@@ -30,52 +30,46 @@ public class QuestionController {
 		this.tagService = tagService;
 		this.answerService = answerService;
 	}
-	
+	//template for adding a question
 	@RequestMapping("/questions/new")
 	public String newQuestion() {
 		return "WEB-INF/NewQuestion.jsp";
 	}
-	
+	//dashboard for questions
 	@RequestMapping("/questions")
 	public String questionsDash(Model model) {
 		model.addAttribute("questions", questionService.allQuestions());
 		return "questions/WEB-INF/Questions.jsp";
 	}
+	//create question and tags
 	@RequestMapping(value="/createQuestion", method=RequestMethod.POST)
 	public String createQuestion(@RequestParam(value="question") String question, @RequestParam(value="tags") String tags) {
-
+		//create question
 		Question newQuestion = new Question(question);
 		questionService.createQuestion(newQuestion);
-
+		//format input
 		List<String> newTags = (List<String>)Arrays.asList(tags.trim().split("\\s*,\\s*"));
 		
 		ArrayList<Tag> allTags = (ArrayList)tagService.allTags();
-
 		ArrayList<Tag> questionTags = new ArrayList<Tag>();
+		//check to see if the tag is already in database 
 		for(int i = 0; i < newTags.size(); i++) {
 			for(Tag t : allTags) {
 				if(newTags.get(i).contentEquals(t.getSubject())) {
-					System.out.println("MATCH");
-					System.out.println("T: " + t.getSubject());
-					System.out.println("New Tag: " + newTags.get(i));
 					Tag myTag = tagService.findTag(t.getId());
 					questionTags.add(myTag);
-					System.out.println(myTag);
-					System.out.println(t.getId());
-					System.out.println(questionTags);
 					i++;
 				}
 			}
 			questionTags.add(tagService.createTag(newTags.get(i)));
 		}
-		newQuestion.setTags(questionTags);
-		System.out.println(questionTags);
+		//set and save the tags
 		newQuestion.setTags(questionTags);
 		questionService.createQuestion(newQuestion);
 
 		return "redirect:/questions/" + newQuestion.getId();
 	}
-	
+	//show question by id
 	@RequestMapping("/questions/{id}")
 	public String showQuestion(@PathVariable(value="id") Long id, Model model) {
 		Question question = questionService.findQuestion(id);

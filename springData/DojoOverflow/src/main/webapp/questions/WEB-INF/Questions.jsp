@@ -26,7 +26,7 @@
 			</tr>
 			</c:forEach>
 		</table>
-		<a href="/questions/new" role="button" class="btn btn-primary">New Question</a>
+		<a href="/questions/new" role="button" class="btn btn-primary font-weight-bold">New Question</a>
 	</div>
 </body>
 </html>

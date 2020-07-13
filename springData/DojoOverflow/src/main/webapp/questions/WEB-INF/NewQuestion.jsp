@@ -14,8 +14,8 @@
 			<h3>What is your question?</h3>
 			<textarea class="form-control mb-3" placeholder="Question" name="question"></textarea>
 			<input onkeyup="this.value = this.value.toLowerCase();" type="text" class="form-control mb-3" placeholder="Tags" name="tags">
-			<button type="submit" class="btn btn-primary d-inline-block">Submit</button>
-			<a href="/questions" role="button" class="btn btn-success" >All Questions</a>
+			<button type="submit" class="btn btn-primary d-inline-block font-weight-bold">Submit</button>
+			<a href="/questions" role="button" class="btn btn-success font-weight-bold" >All Questions</a>
 		</form>
 	</div>
 </body>
